@@ -44,6 +44,9 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     notify: {
+      options: {
+        platform: 'notification-center'
+      },
       custom_options: {
         options: {
           title: 'Notify Title',

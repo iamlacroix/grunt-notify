@@ -38,5 +38,13 @@ module.exports = function(options, cb) {
     return cb && cb(!options.message && 'Message is required');
   }
 
+  if (typeof options.platform !== 'undefined' &&
+      ['growl-notify', 'notification-center', 'notify-send'].indexOf(options.platform) >= 0) {
+    var customNotify = require('./platforms/' + options.platform);
+    if (customNotify) {
+      return customNotify(options, cb);
+    }
+  }
+
   return notify(options, cb);
 };
